@@ -1,0 +1,63 @@
+{
+  "name": "minenoz",
+  "displayName": "MineNoz",
+  "description": "An extension for Minecraft Bedrock building assistance.",
+  "version": "1.0.0",
+  "publisher": "your-publisher-id",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:mcSnippets",
+    "onView:mcScoreboard",
+    "onView:linkedFilesView"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "linkedFilesView",
+          "name": "Linked Files"
+        },        
+        {
+          "id": "mcSnippets",
+          "name": "MC Snippet Repository"
+        },
+        {
+          "id": "mcScoreboard",
+          "name": "MC Scoreboard Objectives"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "extension.sayHello",
+        "title": "Say Hello"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "minecraft",
+    "bedrock",
+    "builder"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dragnoz/Noz-MCkit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/vscode": "^1.50",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "name": "minecraft-dev-toolkit",
+  "displayName": "Minecraft Development Toolkit",
+  "description": "VS Code extension for Minecraft development with snippet repository and scoreboard tracking",
+  "version": "0.2.2",
+  "publisher": "dragnoz",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:minecraftDevToolkit.refreshScoreboards",
+    "onCommand:minecraftDevToolkit.addSnippet",
+    "onView:snippetExplorer",
+    "onView:scoreboardExplorer"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "minecraftDevToolkit.refreshSnippets",
+        "title": "Refresh Snippets",
+        "category": "Minecraft Dev Toolkit"
+      },
+      {
+        "command": "minecraftDevToolkit.addSnippet",
+        "title": "Add Snippet",
+        "category": "Minecraft Dev Toolkit"
+      },
+      {
+        "command": "minecraftDevToolkit.refreshScoreboards",
+        "title": "Refresh Scoreboard Objectives",
+        "category": "Minecraft Dev Toolkit"
+      },
+      {
+        "command": "minecraftDevToolkit.searchSnippets",
+        "title": "Search Snippets",
+        "category": "Minecraft Dev Toolkit"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "snippetExplorer",
+          "name": "MC Snippet Repository"
+        },
+        {
+          "id": "scoreboardExplorer",
+          "name": "MC Scoreboard Objectives"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Minecraft Development Toolkit",
+      "properties": {
+        "minecraftDevToolkit.snippetsPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to store snippet repository JSON file. If empty, uses the workspace folder."
+        },
+        "minecraftDevToolkit.scanOnStartup": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically scan for scoreboard objectives when extension activates."
+        }
+      }
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "minecraftDevToolkit.refreshSnippets",
+          "when": "view == snippetExplorer",
+          "group": "navigation"
+        },
+        {
+          "command": "minecraftDevToolkit.addSnippet",
+          "when": "view == snippetExplorer",
+          "group": "navigation"
+        },
+        {
+          "command": "minecraftDevToolkit.searchSnippets",
+          "when": "view == snippetExplorer",
+          "group": "navigation"
+        },
+        {
+          "command": "minecraftDevToolkit.refreshScoreboards",
+          "when": "view == scoreboardExplorer",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "minecraftDevToolkit.openScoreboardLocation",
+          "when": "view == scoreboardExplorer && viewItem == location",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.1.0",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.3",
+    "typescript": "^4.4.4",
+    "@vscode/test-electron": "^1.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dragnoz/Noz-MCkit"
+  },
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
+  "keywords": [
+    "minecraft",
+    "snippets",
+    "scoreboard",
+    "mcfunction"
+  ],
+  "license": "MIT"
+}
